@@ -1,3 +1,91 @@
+<!DOCTYPE html>
 <html>
-  <p>pop</p>
+
+    <head>
+
+    </head>
+
+    <body>
+    <p>Word</p>
+    <input type="text" id="interval" name="interval" > 
+    <p>Colour of Word</p>
+    <div class="colour">
+      <label for=""></label>
+      <select multiple class="form-control" name="" id="colour">
+        <option value="#FF0000">red</option>
+        <option value="#00FF00">green</option>
+        <option value="#0000FF">blue</option>
+      </select>
+    </div>
+    
+    <button type="button" id="interval_button" name="interval_button">Go </button> <br>     
+    <input type="range" min="0" max="1000" value="250" /> 
+    <div id="output"></div>
+    <p id="word" style="font-size:1500%; text-align: center; color: black;">A</p>
+  
+    <script>
+        /*var firstName = prompt("What is your first name?");
+        var lastName = prompt("What is your Last name?");
+        var age = prompt("What is your age?");
+
+        var fullName = firstName + " " + lastName;
+
+        document.write("Your full name is " + fullName);
+        console.log("you are " + age + " years old");
+        */
+
+
+        function sleep(milliseconds) {
+            const date = Date.now();
+            let currentDate = null;
+            do {
+              currentDate = Date.now();
+            } while (currentDate - date < milliseconds);
+          }
+
+      
+        var paragraph = document.getElementById('word');  
+
+        var textinput = 500;
+        var timing = 250;
+        var colour = "black";
+        var word = "Sample Text";
+      
+        var body = document.querySelector("body"); //SELECT
+       
+        var count = 0;
+        var colors = ["#FF0000", "#00FF00", "#0000FF"];
+       
+        document.getElementById("interval_button").onclick = function() {
+            word = document.getElementById("interval").value;
+            colour = document.getElementById("colour").value;
+            
+            console.log(word);
+            paragraph.textContent = word;
+            paragraph.style.color = colour;
+           
+        };
+
+        document.querySelector('input[type="range"]').addEventListener('change', function (e) {
+            timing = parseInt(this.value);
+            textinput = timing;
+            console.log(timing);
+          });
+          
+
+        function boof() { //MANIPULATE
+            body.style.background = colors[count];
+            count = (count + 1) % colors.length;
+            output.innerHTML = textinput;
+            window.setTimeout(boof, textinput);
+        }
+
+        boof();
+
+    </script>
+
+    
+
+    </body>
+
 </html>
