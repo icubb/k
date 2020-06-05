@@ -1,91 +1,173 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <head>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    </head>
+     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+   
 
-    <body>
-    <p>Word</p>
-    <input type="text" id="interval" name="interval" > 
-    <p>Colour of Word</p>
-    <div class="colour">
-      <label for=""></label>
-      <select multiple class="form-control" name="" id="colour">
-        <option value="#FF0000">red</option>
-        <option value="#00FF00">green</option>
-        <option value="#0000FF">blue</option>
-      </select>
+    <title>Hello, world!</title>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Multi Colour</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <input class="form-control mr-sm-2" type="text" id="add_word" name="add_word" placeholder="Enter word and press enter.">
+                </li>
+                <li class="nav-item active mx-2">
+                    <input type="number" class="form-control mr-sm-2 " type="text" id="font_size" name="font_size" placeholder="Enter font size.">
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Colour of The Word</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownId">
+                        <button class="dropdown-item" id="red" name="red" value="#ff0000" style="background-color: red;">Red</button>
+                        <button class="dropdown-item" id="green" name="green" value="#00ff00" style="background-color: green;">Green</button>
+                        <button class="dropdown-item" id="blue" name="blue" value="#0000ff" style="background-color: blue;">Blue</button>
+                        <label class="ml-3" for="select_colour">Select Colour:</label>
+                        <input class="ml-3" type="color" id="select_colour" name="select_colour" value="#e66465">
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >Strobe Speed</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownId">
+                        <input class="nav-link mx-2 my-2" type="range" id="strobe" name="strobe" min="0" max="1000" value="500">
+                        <div class="mx-2" id="output"></div>
+                    </div>
+                </li>
+                <li class="nav-item active mx-2">
+                    <button id="party_mode" type="button" class="btn btn-primary">Party Mode</button>
+                </li>
+               
+                
+                    
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-5" style="max-width: 100%;">
+
+        <p id="word" class="" style="font-size: 100px; text-align: center; color: black; word-wrap: break-word; margin-top: 400px; margin-bottom: 400px;">Sample Text</p>
+
     </div>
-    
-    <button type="button" id="interval_button" name="interval_button">Go </button> <br>     
-    <input type="range" min="0" max="1000" value="250" /> 
-    <div id="output"></div>
-    <p id="word" style="font-size:1500%; text-align: center; color: black;">A</p>
-  
-    <script>
-        /*var firstName = prompt("What is your first name?");
-        var lastName = prompt("What is your Last name?");
-        var age = prompt("What is your age?");
-
-        var fullName = firstName + " " + lastName;
-
-        document.write("Your full name is " + fullName);
-        console.log("you are " + age + " years old");
-        */
-
-
-        function sleep(milliseconds) {
-            const date = Date.now();
-            let currentDate = null;
-            do {
-              currentDate = Date.now();
-            } while (currentDate - date < milliseconds);
-          }
-
-      
-        var paragraph = document.getElementById('word');  
-
-        var textinput = 500;
-        var timing = 250;
-        var colour = "black";
-        var word = "Sample Text";
-      
-        var body = document.querySelector("body"); //SELECT
-       
-        var count = 0;
-        var colors = ["#FF0000", "#00FF00", "#0000FF"];
-       
-        document.getElementById("interval_button").onclick = function() {
-            word = document.getElementById("interval").value;
-            colour = document.getElementById("colour").value;
-            
-            console.log(word);
-            paragraph.textContent = word;
-            paragraph.style.color = colour;
-           
-        };
-
-        document.querySelector('input[type="range"]').addEventListener('change', function (e) {
-            timing = parseInt(this.value);
-            textinput = timing;
-            console.log(timing);
-          });
-          
-
-        function boof() { //MANIPULATE
-            body.style.background = colors[count];
-            count = (count + 1) % colors.length;
-            output.innerHTML = textinput;
-            window.setTimeout(boof, textinput);
-        }
-
-        boof();
-
-    </script>
 
     
+    <!-- Optional JavaScript PLEASE REMOVE LATER -->
 
-    </body>
 
+
+   </body>
 </html>
+
+
+<script>
+    var colours_background = [{'background-color':'#FF0000'},{'background-color':'#00FF00'},{'background-color':'#0000FF'}];
+    var colours_text = [{'color':'#FF0000'},{'color':'#00FF00'},{'color':'#0000FF'}];
+ //   var colors = ["#FF0000", "#00FF00", "#0000FF"];
+    var count_background = 0;
+    var count_text = 1;
+    
+    var strobe_speed = 1000;
+    var strobe_speed_default = 1000;
+    
+    var font_size = 30;
+    var word = "Sample Text";
+    var party_mode = false;
+
+
+    //count = (count + 1) % colors.length;
+
+/*     function boof() { //MANIPULATE
+        body.style.background = colors[count];
+        count = (count + 1) % colors.length;
+        output.innerHTML = textinput;
+        window.setTimeout(boof, textinput);
+    }
+*/
+    $(document).ready(function() {
+
+        //Change the colour of the word (yes ik it is gross repeated functions)
+        $("#red").click(function() {
+            $("#word").css('color', this.value);
+        });
+
+        $("#green").click(function(){
+            $("#word").css('color', this.value);
+        });
+
+        $("#blue").click(function(){
+            $("#word").css('color', this.value);
+        });
+
+        $("#select_colour").change(function() {
+            $("#word").css('color', this.value);
+        });
+
+
+        //Change the word on the screen
+        $('#add_word').change(function() {
+            word = this.value;
+            $("#word").text(word);
+        });
+
+        //Change the font size of the text.
+        $("#font_size").change(function() {
+            font_size = this.value;
+            $("#word").css('font-size', font_size + "px");
+        });
+
+
+        //Initially setting what strobes value is.
+        $('#output').text($("#strobe").val());
+
+        //getting the strobe speed value
+        $("#strobe").change(function(){
+            strobe_speed = this.value;
+            $("#output").text(this.value);
+        });
+
+        //Party mode 
+        $("#party_mode").click(function() {
+            if(party_mode == true) {
+                party_mode = false;
+                strobe_speed = strobe_speed_default;
+            } else {
+                party_mode = true;
+                strobe_speed = 30;
+            }
+        });
+
+
+        //Recursive function that switches the colour of the background.
+        function colourSwitch() {
+
+            $("body").css(colours_background[count_background]);
+            count_background = (count_background + 1) % colours_background.length;
+
+            if(party_mode == true) {
+            $("#word").css(colours_text[count_text]);
+            count_text = (count_text + 1) % colours_text.length;
+            }
+
+            //console.log(count_);
+            setTimeout(colourSwitch, strobe_speed);
+        }
+        colourSwitch();
+
+
+    });
+</script>
